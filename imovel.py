@@ -73,35 +73,3 @@ def atualizar_cidade(id, cidade):
     salvar_imoveis()
 
 
-def ler_entrada():
-    comando = ''
-    while comando != 'sair':
-        comando = input('digite um comando, ou sair para sair\n')
-        if comando == 'listar imoveis':
-            lista_imoveis()
-        elif comando == 'criar imovel':
-            logradouro = input('digite o logradouro\n')
-            cep = input('digite o cep\n')
-            bairro = input('digite bairro\n')
-            cidade = input('digite cidade\n')
-            criar_imovel(logradouro, cep, bairro, cidade)
-        elif comando == 'remover imovel':
-            id = input('digite o id\n')
-            uid = uuid.UUID(id)
-            deletar_imovel(uid)
-        elif comando == 'atualizar imovel':
-            id = input('digite o id\n')
-            uid = uuid.UUID(id)
-            campo = input('digite o campo do imovel que desja atualizar\n')
-            if campo == 'logradouro':
-                logradouro = input('qual o novo logradouro?\n')
-                atualizar_logradouro(uid,logradouro)
-            elif campo == 'cep':
-                cep = input('qual o novo cep?\n')
-                atualizar_cep(uid,cep)
-            elif campo == 'bairro':
-                bairro = input('qual o novo bairro?\n')
-                atualizar_bairro(uid,bairro)
-            elif campo == 'cidade':
-                cidade = input('qual o novo cidade?\n')
-                atualizar_cidade(uid,cidade)
