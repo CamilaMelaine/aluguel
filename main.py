@@ -8,6 +8,7 @@
 from imovel import *
 from inquilino import *
 from aluguel import *
+from corretor import *
 
 
 def ler_entrada():
@@ -62,14 +63,36 @@ def ler_entrada():
             elif campo == 'data_nascimento':
                 data_nascimento = input('qual a nova data?\n')
                 atualizar_data_nascimento(uid, data_nascimento)
+        elif comando == 'listar corretores':
+            lista_corretores()
+        elif comando == 'criar corretor':
+            nome = input('digite o nome\n')
+            data_nascimento = input('digite data_nascimento\n')
+            criar_corretor(nome, data_nascimento)
+        elif comando == 'remover corretor':
+            id = input('digite o id\n')
+            uid = uuid.UUID(id)
+            deletar_corretor(uid)
+        elif comando == 'atualizar corretor':
+            id = input('digite o id\n')
+            uid = uuid.UUID(id)
+            campo = input('digite o campo do corretor que desja atualizar\n')
+            if campo == 'nome':
+                nome = input('qual o novo nome?\n')
+                atualizar_nome(uid, nome)
+            elif campo == 'data_nascimento':
+                data_nascimento = input('qual a nova data?\n')
+                atualizar_data_nascimento(uid, data_nascimento)
         elif comando == 'listar alugueis':
             lista_alugueis()
         elif comando == 'criar aluguel':
             id_imovel = input('digite o id imóvel\n')
             id_inquilino = input('digite o id inquilino\n')
+            id_corretor = input('digite o id corretor\n')
             uid_imovel=uuid.UUID(id_imovel)
             uid_inquilino=uuid.UUID(id_inquilino)
-            criar_aluguel(uid_imovel, uid_inquilino)
+            uid_corretor = uuid.UUID(id_corretor)
+            criar_aluguel(uid_imovel, uid_inquilino, uid_corretor)
         elif comando == 'remover aluguel':
             id = input('digite o id\n')
             uid = uuid.UUID(id)
@@ -84,6 +107,9 @@ def ler_entrada():
             elif campo == 'id_inquilino':
                 id_inquilino = input('qual o novo id_inquilino?\n')
                 atualizar_id_inquilino(uid, id_inquilino)
+            elif campo == 'id_corretor':
+                id_corretor = input('qual o novo id_corretor?\n')
+                atualizar_id_corretor(uid, id_corretor)
 
 
 
@@ -93,6 +119,7 @@ if __name__ == '__main__':
     ler_imoveis()
     ler_inquilinos()
     ler_alugueis()
+    ler_corretores()
     ler_entrada()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
